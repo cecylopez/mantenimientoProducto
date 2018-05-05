@@ -7,7 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="categoria_producto", schema="MantenimientoProducto")
 
 public class CategoriaProducto {
 	@Id
