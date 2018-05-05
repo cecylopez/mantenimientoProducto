@@ -34,7 +34,7 @@ public class ProductoController {
 
 	}
 	@RequestMapping(method = RequestMethod.PUT, path = "/{codigo}")
-	public ResponseEntity<?> actualizar(@PathVariable("codigo") long codigo, @RequestBody Producto resource) {
+	public ResponseEntity<?> actualizar(@PathVariable("codigo") int codigo, @RequestBody Producto resource) {
 		Producto productoEncontrado = productoRepo.findByCodigo(codigo);
 		if (productoEncontrado!=null) {
 			Producto productoActualizado=productoRepo.save(resource);
@@ -46,7 +46,7 @@ public class ProductoController {
 	}
 	
 	@RequestMapping(method = RequestMethod.DELETE, path = "/{codigo}")
-	public ResponseEntity<?> delete(@PathVariable("codigo") long codigo) {
+	public ResponseEntity<?> delete(@PathVariable("codigo") int codigo) {
 		Producto productoEncontrado = productoRepo.findByCodigo(codigo);
 		if (productoEncontrado != null) {
 			productoRepo.delete(productoEncontrado);
@@ -66,7 +66,7 @@ public class ProductoController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, path = "/buscarPorCodigo/{codigo}")
-	public ResponseEntity<?> bucarByDui(@PathVariable("codigo") long codigo) {
+	public ResponseEntity<?> bucarByDui(@PathVariable("codigo") int codigo) {
 		Producto productoEncontrado= productoRepo.findByCodigo(codigo);
 		if (productoEncontrado !=null) {
 			return new ResponseEntity<Producto>(productoEncontrado, HttpStatus.OK);

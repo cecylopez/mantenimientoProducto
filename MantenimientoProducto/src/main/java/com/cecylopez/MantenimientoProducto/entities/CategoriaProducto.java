@@ -12,12 +12,12 @@ import javax.persistence.Table;
 public class CategoriaProducto {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	long codigo;
+	int codigo;
 	String nombre;
 	public long getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(long codigo) {
+	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
 	public String getNombre() {

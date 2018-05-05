@@ -11,14 +11,15 @@ import javax.persistence.Table;
 public class Producto {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	long codigo;
+	int codigo;
 	String nombre;
 	long cantidadExistencia;
 	long precioUnitario;
+	int categoria;
 	public long getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(long codigo) {
+	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
 	public String getNombre() {
@@ -39,12 +40,16 @@ public class Producto {
 	public void setPrecioUnitario(long precioUnitario) {
 		this.precioUnitario = precioUnitario;
 	}
+	public int getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(int categoria) {
+		this.categoria = categoria;
+	}
 	@Override
 	public String toString() {
 		return "Producto [codigo=" + codigo + ", nombre=" + nombre + ", cantidadExistencia=" + cantidadExistencia
-				+ ", precioUnitario=" + precioUnitario + "]";
+				+ ", precioUnitario=" + precioUnitario + ", categoria=" + categoria + "]";
 	}
 	
-	
-
 }

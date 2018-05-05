@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.cecylopez.MantenimientoProducto.entities.CategoriaProducto;
 
-public interface CategoriaProductoRepository extends JpaRepository<CategoriaProducto, Long> {
-	CategoriaProducto findByCodigo(long codigo);
+public interface CategoriaProductoRepository extends JpaRepository<CategoriaProducto, Integer> {
+	CategoriaProducto findByCodigo(int codigo);
 	List<CategoriaProducto> findByNombre(String nombre);
 }
