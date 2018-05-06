@@ -12,6 +12,10 @@ productoApp.controller("productoCtrl", function($scope, $http) {
 				$scope.productos = response.data;
 			}
 		}, function error(response) {
+			$scope.alerta.titulo = "Error";
+			$scope.alerta.contenido = "no se puede visualizar la lista de productos";
+			$scope.alerta.clase='alert-danger';
+			$scope.alerta.visible = true;
 			
 		});
 	};
@@ -54,7 +58,10 @@ productoApp.controller("productoCtrl", function($scope, $http) {
 					
 				}
 			}, function error(response) {
-				
+				$scope.alerta.titulo = "Error";
+				$scope.alerta.contenido = "No se ha podido eliminar el producto";
+				$scope.alerta.clase='alert-danger';
+				$scope.alerta.visible = true;
 			});
 		}
 	};
@@ -65,6 +72,7 @@ productoApp.controller("productoCtrl", function($scope, $http) {
 	
 	$scope.saveProd = function() {
 		if ($scope.tipo === 'edit') {
+//			https://stackoverflow.com/questions/24545072/angularjs-http-post-send-data-as-json
 			$http({method: 'PUT', url: '/productos/' + $scope.addProdData.codigo, responseType: 'json', data: JSON.stringify($scope.addProdData)}).then(function success(response) {
 				if (response.status == 200) {
 					$scope.alerta.titulo = "Éxito";
@@ -101,6 +109,7 @@ productoApp.controller("productoCtrl", function($scope, $http) {
 				$scope.alerta.contenido = "No se ha podido agregar el producto";
 				$scope.alerta.clase='alert-danger';
 				$scope.alerta.visible = true;
+				$scope.addProdData.nombre="";
 			});
 		}
 	}

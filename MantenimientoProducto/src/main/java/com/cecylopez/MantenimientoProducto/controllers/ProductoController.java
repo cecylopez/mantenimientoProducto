@@ -39,6 +39,9 @@ public class ProductoController {
 
 	@RequestMapping(method = RequestMethod.POST, path = "/")
 	public ResponseEntity<?> agregar(@RequestBody Producto resource) {
+		if(resource.getNombre() !=null) {
+			return new ResponseEntity<Producto>(HttpStatus.UNAUTHORIZED);
+		}
 		Producto producto = productoRepo.save(resource);
 		return new ResponseEntity<Producto>(producto, HttpStatus.CREATED);
 
