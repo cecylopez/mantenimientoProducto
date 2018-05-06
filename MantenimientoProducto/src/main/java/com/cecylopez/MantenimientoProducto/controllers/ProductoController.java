@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cecylopez.MantenimientoProducto.Respositories.CategoriaProductoRepository;
 import com.cecylopez.MantenimientoProducto.Respositories.ProductoRepository;
+import com.cecylopez.MantenimientoProducto.entities.CategoriaProducto;
 import com.cecylopez.MantenimientoProducto.entities.Producto;
 
 @RestController
@@ -19,11 +21,19 @@ import com.cecylopez.MantenimientoProducto.entities.Producto;
 public class ProductoController {
 	@Autowired
 	public ProductoRepository productoRepo;
+	
+	@Autowired
+	public CategoriaProductoRepository cateRepo;
 
 	@RequestMapping(method = RequestMethod.GET, path = "/")
 	public ResponseEntity<List<Producto>> listProductos() {
-		List<Producto> listaProductos = productoRepo.findAll();
+		List<Producto> listaProductos = productoRepo.findAllByOrderByCodigoAsc();
 		return new ResponseEntity<List<Producto>>(listaProductos, HttpStatus.OK);
+	}
+	
+	@RequestMapping(method=RequestMethod.GET, path="/categorias")
+	public ResponseEntity<List<CategoriaProducto>> getCategorias() {
+		return new ResponseEntity<List<CategoriaProducto>>(cateRepo.findAll(), HttpStatus.OK);
 	}
 	
 
@@ -37,6 +47,7 @@ public class ProductoController {
 	public ResponseEntity<?> actualizar(@PathVariable("codigo") int codigo, @RequestBody Producto resource) {
 		Producto productoEncontrado = productoRepo.findByCodigo(codigo);
 		if (productoEncontrado!=null) {
+			resource.setCodigo(codigo);
 			Producto productoActualizado=productoRepo.save(resource);
 			return new ResponseEntity<Producto>(productoActualizado, HttpStatus.OK);
 		} else {

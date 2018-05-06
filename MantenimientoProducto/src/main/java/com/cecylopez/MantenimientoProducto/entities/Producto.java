@@ -1,27 +1,30 @@
 package com.cecylopez.MantenimientoProducto.entities;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Producto {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	int codigo;
+	long codigo;
 	String nombre;
 	@Column(name="cantidad_existencia")
 	long cantidadExistencia;
 	@Column(name="precio_unitario")
-	long precioUnitario;
-	int categoria;
+	BigDecimal precioUnitario;
+	@ManyToOne()
+	CategoriaProducto categoria;
 	public long getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(int codigo) {
+	public void setCodigo(long codigo) {
 		this.codigo = codigo;
 	}
 	public String getNombre() {
@@ -36,16 +39,16 @@ public class Producto {
 	public void setCantidadExistencia(long cantidadExistencia) {
 		this.cantidadExistencia = cantidadExistencia;
 	}
-	public long getPrecioUnitario() {
+	public BigDecimal getPrecioUnitario() {
 		return precioUnitario;
 	}
-	public void setPrecioUnitario(long precioUnitario) {
+	public void setPrecioUnitario(BigDecimal precioUnitario) {
 		this.precioUnitario = precioUnitario;
 	}
-	public int getCategoria() {
+	public CategoriaProducto getCategoria() {
 		return categoria;
 	}
-	public void setCategoria(int categoria) {
+	public void setCategoria(CategoriaProducto categoria) {
 		this.categoria = categoria;
 	}
 	@Override

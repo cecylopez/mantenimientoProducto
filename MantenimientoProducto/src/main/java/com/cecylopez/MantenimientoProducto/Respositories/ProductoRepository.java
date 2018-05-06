@@ -7,7 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.cecylopez.MantenimientoProducto.entities.Producto;
 
 public interface ProductoRepository extends JpaRepository<Producto, Integer> {
-	Producto findByCodigo(int codigo);
+	Producto findByCodigo(long codigo);
 	List<Producto> findByNombre(String nombre);
 	List<Producto> findByNombreLikeIgnoreCase(String nombre);
+    public List<Producto> findAllByOrderByCodigoAsc();
 }

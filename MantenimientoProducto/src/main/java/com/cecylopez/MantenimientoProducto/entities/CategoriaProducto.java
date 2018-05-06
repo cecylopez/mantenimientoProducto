@@ -4,14 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
-
 public class CategoriaProducto {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	int codigo;
+	long codigo;
 	String nombre;
 	public long getCodigo() {
 		return codigo;
